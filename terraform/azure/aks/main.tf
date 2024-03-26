@@ -54,18 +54,39 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   }
 }
 
-resource "helm_release" "nginx_ingress" {
-  name       = "nginx-ingress-controller"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "nginx-ingress-controller"
+resource "helm_release" "mediawiki" {
+  name       = "mediawiki"
+  chart      = "./charts/mediawiki"
 
-  set {
-    name  = "service.type"
-    value = "ClusterIP"
-  }
+ depends_on = [helm_release.mediawiki]
+
 }
 
-resource "helm_release" "mediawiki" {
-  name  = "mediawiki"
-  chart = "./charts/mediawiki"
+resource "helm_release" "mysql" {
+  name  = "mysql"
+  chart = "./charts/mysql"
+  set {
+    name  = "auth.rootPassword"
+    value = "SKAdmin@24"
+  }
+  set {
+    name  = "auth.password"
+    value = "twMediaWiki@24"
+  }
+  set {
+    name  = "auth.database"
+    value = "mediawiki"
+  }
+  set {
+    name  = "auth.username"
+    value = "wiki"
+  }
+  set {
+    name  = "metrics.enabled"
+    value =  true
+  }
+  set {
+    name  = "auth.createDatabase"
+    value =  true
+  }
 }

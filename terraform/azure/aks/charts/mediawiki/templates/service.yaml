@@ -1,9 +1,15 @@
-{{ if not (hasSuffix "canary" .Release.Name) }}
-{{ if not .Values.mesh.enabled }}
-  {{- template "app.generic.service" . }}
-{{- end }}
-{{- if .Values.debug.enabled }}
-  {{- template "app.generic.debug_service" . }}
-{{- end }}
-{{ include "mesh.service" . }}
-{{- end }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "mediakwiki.fullname" . }}
+  labels:
+    {{- include "mediakwiki.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "mediakwiki.selectorLabels" . | nindent 4 }}
