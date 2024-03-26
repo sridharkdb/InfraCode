@@ -30,9 +30,16 @@ jobs:
           file: ./dockerbase/mediawiki/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hyd-devops:mediawiki-v1.0  
-  az-login:
+  terraform-plan:
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
     needs: [docker-build-push]
+    outputs:
+      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform/azure/aks
     steps:
     - uses: azure/login@v2
       with:
@@ -43,17 +50,6 @@ jobs:
         azcliversion: latest
         inlineScript: |
           az account show
-  terraform-plan:
-    name: 'Terraform Plan'
-    runs-on: ubuntu-latest
-    needs: [az-login]
-    outputs:
-      tfplanExitCode: ${{ steps.tf-plan.outputs.exitcode }}
-    defaults:
-      run:
-        shell: bash
-        working-directory: terraform/azure/aks
-    steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
