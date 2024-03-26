@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "mediakwiki.fullname" . }}
-  annotations:
   labels:
     {{- include "mediakwiki.labels" . | nindent 4 }}
 spec:

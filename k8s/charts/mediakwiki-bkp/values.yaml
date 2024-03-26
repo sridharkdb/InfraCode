@@ -83,6 +83,7 @@ readinessProbe:
     port: 80
   initialDelaySeconds: 25
   periodSeconds: 10
+
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -90,23 +91,15 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-volumes:
-- name: phpconfig-settings
-  configMap:
-    name: mwiki-localsettings-cm
-volumeMounts:
-- name: phpconfig-settings
-  mountPath: /var/www/mediawiki/LocalSettings.php
-  subPath: LocalSettings.php
 # Additional volumes on the output Deployment definition.
-#volumes: []
+volumes: []
 # - name: foo
 #   secret:
 #     secretName: mysecret
 #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
-#volumeMounts: []
+volumeMounts: []
 # - name: foo
 #   mountPath: "/etc/foo"
 #   readOnly: true

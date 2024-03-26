@@ -62,7 +62,7 @@ data:
     ## Database settings
     $wgDBtype = "mysql";
     $wgDBserver = "mysql.default.svc.cluster.local";
-    $wgDBname = "localhost";
+    $wgDBname = "mediawiki";
     $wgDBuser = "wiki";
     $wgDBpassword = "twMediaWiki@24";
 

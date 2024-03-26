@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pre-install-phpdbinstall-pod
+  annotations:
+    "helm.sh/hook": "pre-install"
+spec:
+  containers:
+  - name: mediawiki-prepod
+    image: sridharkdb/iac-hyd:mediawiki-oralnx8-v1.0
+    imagePullPolicy: IfNotPresent
+    command: ['sh', '-c', 'cd /var/www/mediawiki && php maintenance/install.php --dbname=mediawiki --dbserver="mysql.default.svc.cluster.local" --installdbuser=wiki --installdbpass=twMediaWiki@24 --dbuser=wiki --dbpass=twMediaWiki@24 --server="http://localhost" --scriptpath=/mediawiki --lang=en --pass=WikiAdminTech@24 "TechWiki" "admin"']
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0
