@@ -51,7 +51,7 @@ jobs:
         azcliversion: latest
         inlineScript: |
           az account show
-  terraform-plan:
+  terraform-plan-apply:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
     needs: [az-login]
@@ -145,8 +145,10 @@ jobs:
                 repo: context.repo.repo,
                 body: body
             })
-
-                
+    #terraform apply
+    - name: Terraform Apply
+      run: terraform apply -auto-approve tfplan
+           
 #  terraform-apply:
 #    name: 'Terraform Apply'
 #    if: github.ref == 'refs/heads/main' && needs.terraform-plan.outputs.tfplanExitCode == 2
