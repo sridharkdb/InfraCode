@@ -1,2 +1,1 @@
-# InfraCode
-Infrastructure Code 
+# infra-automation
