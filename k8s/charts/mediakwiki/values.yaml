@@ -73,12 +73,16 @@ resources: {}
 
 livenessProbe:
   httpGet:
-    path: /mediawiki
-    port: http
+    path: /mediawiki/index.php/Main_Page
+    port: 80
+  initialDelaySeconds: 25
+  periodSeconds: 10
 readinessProbe:
   httpGet:
-    path: /mediawiki
-    port: http
+    path: /mediawiki/index.php/Main_Page
+    port: 80
+  initialDelaySeconds: 25
+  periodSeconds: 10
 
 autoscaling:
   enabled: false

@@ -1,5 +1,0 @@
-{{ include "lamp.httpd.configmap" . }}
-{{ include "lamp.phpfpm.configmap" . }}
-{{ include "mesh.configuration.configmap" . }}
-{{- include "base.statsd.configmap" . }}
-{{- include "cache.mcrouter.configmap" . }}
