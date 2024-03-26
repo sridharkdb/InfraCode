@@ -5,10 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: sridharkdb/iac-hyd:mediawiki-oralnx8-v1.0
+  repository: sridharkdb/iac-hyd
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "mediawiki-oralnx8-v1.0"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -16,9 +16,9 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Automatically mount a ServiceAccount's API credentials?
-  automount: true
+  automount: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
