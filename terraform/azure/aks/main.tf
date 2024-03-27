@@ -61,10 +61,10 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 }
 
 resource "helm_release" "mediawiki" {
-  name       = "mediawiki"
-  chart      = "./charts/mediawiki"
+  name  = "mediawiki"
+  chart = "./charts/mediawiki"
 
- depends_on = [helm_release.mysql]
+  depends_on = [helm_release.mysql]
 
 }
 
@@ -89,10 +89,10 @@ resource "helm_release" "mysql" {
   }
   set {
     name  = "metrics.enabled"
-    value =  true
+    value = true
   }
   set {
     name  = "auth.createDatabase"
-    value =  true
+    value = true
   }
 }
