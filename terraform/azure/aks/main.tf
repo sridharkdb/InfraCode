@@ -27,10 +27,10 @@ provider "helm" {
 }
 
 provider "kubernetes" {
-  host                   = data.azurerm_kubernetes_cluster.k8s.kube_config.0.host
-  client_certificate     = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config.0.client_certificate)
-  client_key             = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config.0.client_key)
-  cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config.0.cluster_ca_certificate)
+  host                   = data.azurerm_kubernetes_cluster.k8s.kube_config[0].host
+  client_certificate     = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config[0].client_certificate)
+  client_key             = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config[0].client_key)
+  cluster_ca_certificate = base64decode(data.azurerm_kubernetes_cluster.k8s.kube_config[0].cluster_ca_certificate)
 }
 resource "azurerm_kubernetes_cluster" "k8s" {
   location            = azurerm_resource_group.rg.location

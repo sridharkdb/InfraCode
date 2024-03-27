@@ -36,7 +36,7 @@ jobs:
           context: .
           file: ./dockerbase/mediawiki/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hyd-devops:mediawiki-v1.0
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/iac-hyd:mediawiki-oralnx8-v1.0
 
       -
         name: Build and push mysql8.0
@@ -45,7 +45,7 @@ jobs:
           context: ./dockerbase/mysql
           file: ./dockerbase/mysql/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hyd-devops:mysql8.0
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/iac-hyd:mysql8.0
   
   az-login:
     runs-on: ubuntu-latest
