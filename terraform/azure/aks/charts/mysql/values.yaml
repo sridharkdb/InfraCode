@@ -88,9 +88,9 @@ diagnosticMode:
 ## @param image.debug Specify if debug logs should be enabled
 ##
 image:
-  registry: docker.io
-  repository: bitnami/mysql
-  tag: 8.0.36-debian-12-r8
+  registry: 
+  repository: sridharkdb/iac-hyd
+  tag: mysql8.0
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
