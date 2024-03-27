@@ -42,7 +42,7 @@ jobs:
         name: Build and push mysql8.0
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./dockerbase/mysql
           file: ./dockerbase/mysql/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hyd-devops:mysql8.0
